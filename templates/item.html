@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ item.title if item else 'Item' }} — Wingato{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <p><a href="/" class="back-link"><span class="prompt">&lt;</span> BACK</a></p>
+
+    {% if error or not item %}
+    <div class="error-box"><span class="error-icon">!</span> Could not load this item. {{ error or '' }}</div>
+    {% else %}
+    <h1 class="page-title">{{ item.title }}</h1>
+
+    <div class="result-grid">
+        <div class="result-thumb">
+            {% if item.thumb %}<img src="{{ item.thumb }}" alt="" class="thumbnail-img" referrerpolicy="no-referrer">{% endif %}
+        </div>
+        <div class="result-meta">
+            <div class="meta-row"><span class="meta-label">CREATOR:</span> <span class="meta-value">{{ item.creator or 'Unknown' }}</span></div>
+            <div class="meta-row"><span class="meta-label">DATE:</span> <span class="meta-value">{{ item.date or 'Unknown' }}</span></div>
+            {% if item.licenseurl %}
+            <div class="meta-row"><span class="meta-label">LICENSE:</span> <a class="meta-link" href="{{ item.licenseurl }}" target="_blank" rel="noopener">{{ item.licenseurl }}</a></div>
+            {% endif %}
+            <div class="meta-row"><span class="meta-label">SOURCE:</span> <a class="meta-link" href="{{ item.page }}" target="_blank" rel="noopener">archive.org/details/{{ item.id }}</a></div>
+            {% if item.description %}
+            <details class="description"><summary><span class="meta-label">DESCRIPTION:</span></summary><p>{{ item.description }}</p></details>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="download-section">
+        <h2 class="section-title"><span class="prompt">&gt;</span> DOWNLOAD ({{ item.files|length }} files)</h2>
+        {% if not item.files %}
+        <div class="error-box"><span class="error-icon">!</span> No downloadable files in this item.</div>
+        {% endif %}
+        <table class="file-table">
+            <thead><tr><th>File</th><th>Format</th><th>Size</th><th></th></tr></thead>
+            <tbody>
+            {% for f in item.files %}
+                <tr>
+                    <td class="fname">{{ f.name }}</td>
+                    <td>{{ f.format or '-' }}</td>
+                    <td>{{ f.size|filesize }}</td>
+                    <td><a class="btn btn-dl" href="{{ url_for('download', url=f.url, name=f.name) }}">GET</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ad-slot">
+        <div class="ad-placeholder">AD SPACE — place your ad unit here</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <pre class="logo">
+ __      __.___  ________
+/  \    /  \   |/  _____/
+\   \/\/   /   /   \  ___
+ \        /|   |   \_\  \
+  \__/\  / |___|______  /
+       \/             \/</pre>
+    <h1 class="tagline">Open Media Downloader</h1>
+    <p class="subtitle">Search public-domain and Creative Commons media from the Internet Archive and Wikimedia Commons. Download it, free and legally.</p>
+</div>
+
+{% if error %}
+<div class="error-box">
+    <span class="error-icon">!</span> {{ error }}
+</div>
+{% endif %}
+
+<div class="input-section">
+    <form class="fetch-form" action="/search" method="GET">
+        <label for="q" class="input-label">
+            <span class="prompt">&gt;</span> search open media<span class="cursor">_</span>
+        </label>
+        <input type="text" id="q" name="q" class="url-input" placeholder="e.g. silent film, jazz, NASA, old maps..." required autocomplete="off">
+        <div class="source-row">
+            <label class="source-opt"><input type="radio" name="source" value="all" checked> All</label>
+            <label class="source-opt"><input type="radio" name="source" value="archive"> Internet Archive</label>
+            <label class="source-opt"><input type="radio" name="source" value="commons"> Wikimedia Commons</label>
+        </div>
+        <button type="submit" class="btn btn-primary fetch-btn">
+            <span class="btn-text">SEARCH</span>
+        </button>
+    </form>
+</div>
+
+<div class="platforms">
+    <span class="platform-badge">Public Domain</span>
+    <span class="platform-badge">Creative Commons</span>
+    <span class="platform-badge">Archive.org</span>
+    <span class="platform-badge">Wikimedia</span>
+</div>
+
+<div class="features">
+    <h2 class="section-title"><span class="prompt">#</span> What you can grab</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-icon">[V]</div>
+            <h3>Video</h3>
+            <p>Public-domain films, newsreels, animations</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">[A]</div>
+            <h3>Audio</h3>
+            <p>Old-time radio, jazz, classical, speeches</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">[I]</div>
+            <h3>Images</h3>
+            <p>Historical photos, maps, artwork, posters</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">[T]</div>
+            <h3>Text</h3>
+            <p>Books, transcripts, documents (PDF/TXT)</p>
+        </div>
+    </div>
+</div>
+
+<div class="ad-slot">
+    <div class="ad-placeholder">AD SPACE — place your ad unit here</div>
+</div>
+{% endblock %}

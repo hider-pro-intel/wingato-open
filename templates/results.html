@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Search — Wingato{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <h1 class="page-title"><span class="prompt">&gt;</span> results for "{{ q }}"</h1>
+    <p class="subtitle">{{ results|length }} item(s) · source: {{ source }}</p>
+
+    <form class="fetch-form compact" action="/search" method="GET">
+        <input type="text" name="q" class="url-input" value="{{ q }}" required>
+        <input type="hidden" name="source" value="{{ source }}">
+        <button type="submit" class="btn btn-primary">SEARCH</button>
+    </form>
+
+    {% if not results %}
+    <div class="error-box"><span class="error-icon">!</span> No results. Try different words, or another source.</div>
+    {% endif %}
+
+    <div class="result-cards">
+        {% for r in results %}
+        <div class="result-card">
+            <div class="card-thumb">
+                {% if r.thumb %}
+                <img src="{{ r.thumb }}" alt="" loading="lazy" referrerpolicy="no-referrer">
+                {% else %}
+                <div class="no-thumb">no preview</div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <span class="src-badge src-{{ r.source }}">{{ r.source }}</span>
+                <span class="src-badge">{{ r.mediatype or 'media' }}</span>
+                <h3 class="card-title">{{ r.title }}</h3>
+                <p class="card-meta">
+                    {% if r.creator %}{{ r.creator }}{% endif %}
+                    {% if r.year %}· {{ r.year }}{% endif %}
+                    {% if r.downloads %}· {{ r.downloads|shortnum }} downloads{% endif %}
+                </p>
+                <div class="card-actions">
+                    {% if r.source == 'archive' %}
+                    <a class="btn btn-dl" href="{{ url_for('item', id=r.id) }}">VIEW FILES</a>
+                    {% else %}
+                    <a class="btn btn-dl" href="{{ url_for('download', url=r.file_url, name=r.title) }}">DOWNLOAD ({{ r.size|filesize }})</a>
+                    {% endif %}
+                    <a class="btn btn-dl ghost" href="{{ r.page }}" target="_blank" rel="noopener">SOURCE PAGE</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="ad-slot">
+        <div class="ad-placeholder">AD SPACE — place your ad unit here</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}About — Wingato{% endblock %}
+
+{% block content %}
+<div class="page-content">
+    <h1 class="page-title"><span class="prompt">&gt;</span> ABOUT WINGATO</h1>
+
+    <div class="about-section">
+        <h2 class="section-title">What is Wingato?</h2>
+        <p>Wingato is a free downloader for <strong>openly-licensed and public-domain media</strong>. It searches the Internet Archive and Wikimedia Commons and lets you download films, audio, images and text that are free to use.</p>
+    </div>
+
+    <div class="about-section">
+        <h2 class="section-title">Why only open sources?</h2>
+        <p>Downloading videos from YouTube, Instagram, Facebook or X breaks those platforms' terms of service, and hosting a tool that does it gets the site taken down. By sticking to libraries that <em>want</em> their media downloaded, Wingato can stay online and stay legal.</p>
+    </div>
+
+    <div class="about-section">
+        <h2 class="section-title">How does it work?</h2>
+        <p>Type what you're looking for. Wingato queries the source libraries' public APIs, shows you what's available, and streams the file straight to you. Nothing is stored on our servers.</p>
+    </div>
+
+    <div class="about-section legal">
+        <h2 class="section-title">Licensing note</h2>
+        <p>Every result links back to its source page, where you can see the exact licence (public domain, CC0, CC-BY, etc.). Some CC licences require attribution — check the source page before you reuse something.</p>
+        <p>Wingato does not host any files. We do not control what is in the source libraries; we only provide access to what they publish.</p>
+    </div>
+
+    <div class="about-section">
+        <h2 class="section-title">Sources</h2>
+        <div class="platforms-list">
+            <span class="platform-badge">Internet Archive</span>
+            <span class="platform-badge">Wikimedia Commons</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

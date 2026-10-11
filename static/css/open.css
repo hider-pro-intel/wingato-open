@@ -1,0 +1,127 @@
+/* Wingato Open - additions on top of the terminal theme (style.css) */
+
+.source-row {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin: 0.75rem 0 0.5rem;
+    color: var(--text-dim);
+}
+.source-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+.source-opt input { accent-color: var(--accent); }
+
+.fetch-form.compact {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
+}
+.fetch-form.compact .url-input { flex: 1; }
+
+/* ---- result cards ---- */
+.result-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.result-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.result-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.card-thumb {
+    height: 150px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card-body {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+}
+.src-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-dim);
+    align-self: flex-start;
+}
+.src-archive { color: var(--fg-bright); border-color: var(--fg-dim); }
+.src-commons { color: var(--yellow); border-color: var(--yellow); }
+.card-title {
+    font-size: 0.9rem;
+    color: var(--fg);
+    line-height: 1.35;
+    word-break: break-word;
+}
+.card-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+.card-actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 0.4rem;
+}
+.card-actions .btn { font-size: 0.72rem; padding: 0.35rem 0.5rem; }
+.btn.ghost {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+}
+
+/* ---- file table ---- */
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+}
+.file-table th, .file-table td {
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 0.6rem;
+    text-align: left;
+    vertical-align: middle;
+}
+.file-table th {
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+}
+.file-table .fname {
+    color: var(--fg);
+    word-break: break-all;
+    max-width: 380px;
+}
+.file-table .btn { font-size: 0.72rem; padding: 0.3rem 0.6rem; white-space: nowrap; }
